@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\targets\AddReleaseNotes.targets" />
+  <Import Project="..\targets\AddReadmeMarkdown.targets" />
+  <Import Project="..\targets\CommonBuild.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <PackageId>bmcdavid.AzureGraphService</PackageId>
+    <Authors>Brad McDavid</Authors>
+    <Copyright>Copyright $(CurrentYear)</Copyright>
+    <Description>Adds ability to sync AAD groups to claim roles</Description>
+    <PackageVersion>0.9.0</PackageVersion>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags>sso azure ad activedirectory identity</PackageTags>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/bmcdavid/IdentityCollection/master/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://raw.githubusercontent.com/bmcdavid/IdentityCollection</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/bmcdavid/IdentityCollection/master/icon.png</PackageIconUrl>
+
+    <!--adds readme.md as readme.txt in package-->
+    <IncludeReadMeMarkdown>true</IncludeReadMeMarkdown>
+
+    <!--Provide intellisense for developers-->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!--useful to allow others to debug -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+
+    <!--set assembly info version from CI prop if possible-->
+    <BuildInfo Condition="'$(CIBuildNumber)' != ''"> Commit: $(RepositoryCommit) Branch: $(RepositoryBranch) Build: $(CIBuildNumber)</BuildInfo>
+    <InformationalVersion>$(PackageVersion) $(BuildInfo)</InformationalVersion>
+
+    <!--do not change unless you want to deal with assembly redirects-->
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.ActiveDirectory.GraphClient" Version="2.1.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Clients.ActiveDirectory" Version="4.5.1" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,3 @@
+﻿# Claim Criteria for Episerver Visitor Groups
+
+Adds a visitor group criteria for claims. Also provides a **IClaimTypeSelectorExtension** interface to provide additional claims to the criteria module. To use simple add a **ModuleDependency** attribute on an Episerver configuration module for the **ClaimsCriteriaConfigurationModule** and add a custom implementation of the above interface as a singleton.

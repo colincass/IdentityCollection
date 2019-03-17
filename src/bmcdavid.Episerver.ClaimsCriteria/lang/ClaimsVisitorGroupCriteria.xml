@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+  <language name="English" id="en">
+    <enums>
+      <bmcdavid>
+        <episerver>
+          <claimscriteria>
+            <claimcondition>
+              <equals>Equal To</equals>
+              <notequals>Not Equal</notequals>
+              <contains>Contains</contains>
+              <notcontains>NotContains</notcontains>
+              <startswith>Starts With</startswith>
+              <notstartswith>Not Starts With</notstartswith>
+              <endswith>Ends With</endswith>
+              <notendswith>Not Ends With</notendswith>
+            </claimcondition>
+          </claimscriteria>
+        </episerver>
+      </bmcdavid>
+    </enums>
+  </language>
+</languages>
