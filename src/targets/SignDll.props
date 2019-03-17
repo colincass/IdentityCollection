@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\bmcdavid.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+</Project>

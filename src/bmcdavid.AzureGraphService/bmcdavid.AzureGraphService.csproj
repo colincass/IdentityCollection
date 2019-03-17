@@ -3,6 +3,7 @@
   <Import Project="..\targets\AddReleaseNotes.targets" />
   <Import Project="..\targets\AddReadmeMarkdown.targets" />
   <Import Project="..\targets\CommonBuild.props" />
+  <Import Project="..\targets\SignDll.props" />
 
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
@@ -15,7 +16,7 @@
     <PackageTags>sso azure ad activedirectory identity</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://raw.githubusercontent.com/bmcdavid/IdentityCollection/master/license.txt</PackageLicenseUrl>
-    <PackageProjectUrl>https://raw.githubusercontent.com/bmcdavid/IdentityCollection</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/bmcdavid/IdentityCollection</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/bmcdavid/IdentityCollection/master/icon.png</PackageIconUrl>
 
     <!--adds readme.md as readme.txt in package-->
