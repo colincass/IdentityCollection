@@ -55,7 +55,7 @@ namespace bmcdavid.Episerver.ClaimsCriteria
 
             yield return new SelectListItem
             {
-                Text = "---------Custom Claim---------",
+                Text = "---Custom Claim------------------",
                 Value = CustomClaimType
             };
 
