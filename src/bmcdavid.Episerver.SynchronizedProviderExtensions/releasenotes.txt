@@ -1,1 +1,1 @@
-﻿initial release.
+﻿Fixed search bug where extended roles weren't available.

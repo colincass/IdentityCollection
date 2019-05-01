@@ -11,7 +11,7 @@
     <Authors>Brad McDavid</Authors>
     <Copyright>Copyright $(CurrentYear)</Copyright>
     <PackageDescription>Adds manual roles for synchronized users in Episerver.</PackageDescription>
-    <PackageVersion>0.9.0</PackageVersion>
+    <PackageVersion>0.9.1</PackageVersion>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageTags>episerver sso identity claims</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
