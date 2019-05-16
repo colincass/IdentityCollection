@@ -1,4 +1,5 @@
 ﻿using EPiServer.Personalization.VisitorGroups;
+using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
@@ -37,20 +38,36 @@ namespace bmcdavid.Episerver.ClaimsCriteria
             {
                 case ClaimCondition.Equals:
                     return Model.Value == c.Value;
+                case ClaimCondition.EqualsCaseInsensitive:
+                    return string.Compare(Model.Value, c.Value, StringComparison.OrdinalIgnoreCase) == 0;
                 case ClaimCondition.NotEquals:
                     return Model.Value != c.Value;
+                case ClaimCondition.NotEqualsCaseInsensitive:
+                    return string.Compare(Model.Value, c.Value, StringComparison.OrdinalIgnoreCase) != 0;
                 case ClaimCondition.Contains:
                     return c.Value.Contains(Model.Value);
+                case ClaimCondition.ContainsCaseInsensitive:
+                    return c.Value.ToUpper().Contains(Model.Value.ToUpper());
                 case ClaimCondition.NotContains:
                     return !c.Value.Contains(Model.Value);
+                case ClaimCondition.NotContainsCaseInsensitive:
+                    return !c.Value.ToUpper().Contains(Model.Value.ToUpper());
                 case ClaimCondition.StartsWith:
                     return c.Value.StartsWith(Model.Value);
+                case ClaimCondition.StartsWithCaseInsensitive:
+                    return c.Value.ToUpper().StartsWith(Model.Value.ToUpper());
                 case ClaimCondition.NotStartswith:
                     return !c.Value.StartsWith(Model.Value);
+                case ClaimCondition.NotStartswithCaseInsensitive:
+                    return !c.Value.ToUpper().StartsWith(Model.Value.ToUpper());
                 case ClaimCondition.EndsWith:
                     return c.Value.EndsWith(Model.Value);
+                case ClaimCondition.EndsWithCaseInsensitive:
+                    return c.Value.ToUpper().EndsWith(Model.Value.ToUpper());
                 case ClaimCondition.NotEndsWith:
                     return !c.Value.EndsWith(Model.Value);
+                case ClaimCondition.NotEndsWithCaseInsensitive:
+                    return !c.Value.ToUpper().EndsWith(Model.Value.ToUpper());
             }
 
             return false;

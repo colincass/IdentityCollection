@@ -7,12 +7,20 @@ namespace bmcdavid.Episerver.ClaimsCriteria
     public enum ClaimCondition
     {
         Equals,
+        EqualsCaseInsensitive,
         NotEquals,
+        NotEqualsCaseInsensitive,
         Contains,
+        ContainsCaseInsensitive,
         NotContains,
+        NotContainsCaseInsensitive,
         StartsWith,
+        StartsWithCaseInsensitive,
         NotStartswith,
+        NotStartswithCaseInsensitive,
         EndsWith,
-        NotEndsWith
+        EndsWithCaseInsensitive,
+        NotEndsWith,
+        NotEndsWithCaseInsensitive
     }
 }

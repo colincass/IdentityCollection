@@ -38,7 +38,7 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
             var defaultRoles = new HashSet<string>(_synchedProvider.GetRolesForUser(userName));
             var extendedRoles = _extendedRoleProvider.GetRolesForUser(userName);
 
-            foreach(var role in extendedRoles)
+            foreach (var role in extendedRoles)
             {
                 defaultRoles.Add(role);
             }
@@ -66,8 +66,14 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
                 case ClaimTypes.Role:
                 default:
                     var hashSet = new HashSet<SecurityEntity>(_synchedProvider.Search(partOfValue, claimType), new SecurityNameComparer());
+                    var extendedRoles = _extendedRoleProvider.GetAllRoles();
 
-                    foreach (var manual in _extendedRoleProvider.GetAllRoles())
+                    if (!string.IsNullOrWhiteSpace(partOfValue))
+                    {
+                        extendedRoles = extendedRoles.Where(r => r.Name.Contains(partOfValue));
+                    }
+
+                    foreach (var manual in extendedRoles)
                     {
                         hashSet.Add(new SecurityEntity(manual.Name, SecurityEntityType.Role));
                     }
@@ -85,7 +91,30 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         /// <param name="maxRows"></param>
         /// <param name="totalCount"></param>
         /// <returns></returns>
-        public override IEnumerable<SecurityEntity> Search(string partOfValue, string claimType, int startIndex, int maxRows, out int totalCount) =>
-            _synchedProvider.Search(partOfValue, claimType, startIndex, maxRows, out totalCount);
+        public override IEnumerable<SecurityEntity> Search(string partOfValue, string claimType, int startIndex, int maxRows, out int totalCount)
+        {
+            var defaultResults = _synchedProvider.Search(partOfValue, claimType, startIndex, maxRows, out totalCount);
+
+            switch (claimType)
+            {
+                case ClaimTypes.Role:
+                    var hashSet = new HashSet<SecurityEntity>(defaultResults, new SecurityNameComparer());
+                    var filteredRoles = _extendedRoleProvider.GetAllRoles().Where(r => r.Name.Contains(partOfValue));
+
+                    foreach (var manual in filteredRoles)
+                    {
+                        hashSet.Add(new SecurityEntity(manual.Name, SecurityEntityType.Role));
+                        totalCount++;
+                    }
+
+                    return hashSet.OrderBy(x => x.Name).ToList();
+
+                case ClaimTypes.Email:
+                case ClaimTypes.Name:
+                default:
+                    return defaultResults;
+            }
+
+        }
     }
 }

@@ -12,7 +12,7 @@
     <Authors>Brad McDavid</Authors>
     <Copyright>Copyright $(CurrentYear)</Copyright>
     <Description>Adds Episerver visitor group claim criteria</Description>
-    <PackageVersion>0.9.0</PackageVersion>
+    <PackageVersion>0.9.1</PackageVersion>
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageTags>episerver identity claims visitor group</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
@@ -41,6 +41,6 @@
 
   <ItemGroup>
     <Content Include="lang\ClaimsVisitorGroupCriteria.xml" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.1.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="[11.1.0, 12.0)" />
   </ItemGroup>
 </Project>
