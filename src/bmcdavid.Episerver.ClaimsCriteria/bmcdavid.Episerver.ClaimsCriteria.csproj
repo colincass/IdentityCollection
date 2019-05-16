@@ -41,6 +41,6 @@
 
   <ItemGroup>
     <Content Include="lang\ClaimsVisitorGroupCriteria.xml" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="11.1.0" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="[11.1.0, 12.0)" />
   </ItemGroup>
 </Project>
