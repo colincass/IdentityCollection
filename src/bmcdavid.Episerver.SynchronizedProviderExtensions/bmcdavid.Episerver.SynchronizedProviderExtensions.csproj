@@ -6,7 +6,7 @@
   <Import Project="..\targets\SignDll.props" />
 
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <PackageId>bmcdavid.Episerver.SynchronizedProviderExtensions</PackageId>
     <Authors>Brad McDavid</Authors>
     <Copyright>Copyright $(CurrentYear)</Copyright>

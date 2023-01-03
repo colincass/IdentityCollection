@@ -7,7 +7,7 @@
 
   <PropertyGroup>
     <!--Target both full framework and netstandard to simplify installation, Epi 11 requires net461 or higher-->
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <PackageId>bmcdavid.Episerver.ClaimsCriteria</PackageId>
     <Authors>Brad McDavid</Authors>
     <Copyright>Copyright $(CurrentYear)</Copyright>
@@ -42,5 +42,6 @@
   <ItemGroup>
     <Content Include="lang\ClaimsVisitorGroupCriteria.xml" />
     <PackageReference Include="EPiServer.CMS.UI.Core" Version="[11.1.0, 12.0)" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.355802" />
   </ItemGroup>
 </Project>
