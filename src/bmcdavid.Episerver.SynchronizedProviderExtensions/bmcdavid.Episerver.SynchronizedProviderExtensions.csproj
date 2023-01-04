@@ -5,6 +5,7 @@
   <Import Project="..\targets\SignDll.props" />
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
     <PackageId>bmcdavid.Episerver.SynchronizedProviderExtensions</PackageId>
     <Authors>Brad McDavid</Authors>
     <Copyright>Copyright $(CurrentYear)</Copyright>
@@ -42,4 +43,11 @@
     <ProjectReference Include="..\bmcdavid.Episerver.ClaimsCriteria\bmcdavid.Episerver.ClaimsCriteria.csproj" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
+  <Target Name="AddAssemblyAliasToReactiveAsync" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <ReferencePath Condition=" '%(FileName)' == 'System.Interactive.Async' ">
+        <Aliases>reactive</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
 </Project>

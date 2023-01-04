@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace bmcdavid.Episerver.SynchronizedProviderExtensions
 {
@@ -37,6 +38,12 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         /// </summary>
         public override string Name => nameof(ExtendedRoleProvider);
 
+        public override IAsyncEnumerable<IUIRole> GetAllRolesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        #region obsoletemethods
         /// <summary>
         /// Adds username to given roles
         /// </summary>
@@ -234,5 +241,7 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
                 return ctx.ExtendedRoles.Any(r => roleName == r.RoleName);
             }
         }
+
+        #endregion
     }
 }

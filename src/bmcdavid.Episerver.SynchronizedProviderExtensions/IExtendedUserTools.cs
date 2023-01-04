@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -14,9 +15,9 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         /// Adds role claims for any matching visitor group
         /// </summary>
         /// <param name="identity"></param>
-        /// <param name="httpContextBase"></param>
+        /// <param name="httpContext"></param>
         /// <returns></returns>
-        Task AddVisitorGroupRolesAsClaimsAsync(ClaimsIdentity identity, HttpContextBase httpContextBase = null);
+        Task AddVisitorGroupRolesAsClaimsAsync(ClaimsIdentity identity, HttpContext httpContext = null);
 
         /// <summary>
         /// Sets login and created utc dates and assigns manual roles to identity

@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace bmcdavid.Episerver.SynchronizedProviderExtensions
@@ -35,6 +37,11 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         /// Provider name
         /// </summary>
         public override string Name => nameof(ExtendedUserProvider);
+
+        public override Task<int> CountAsync(Expression<Func<IUIUser, bool>> predicate = null, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// NOT SUPPORTED, will throw exception
