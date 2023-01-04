@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\targets\AddReleaseNotes.targets" />
+  <Import Project="..\targets\AddReadmeMarkdown.targets" />
+  <Import Project="..\targets\CommonBuild.props" />
+  <Import Project="..\targets\SignDll.props" />
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <PackageId>bmcdavid.Episerver.SynchronizedProviderExtensions</PackageId>
+    <Authors>Brad McDavid</Authors>
+    <Copyright>Copyright $(CurrentYear)</Copyright>
+    <PackageDescription>Adds manual roles for synchronized users in Episerver.</PackageDescription>
+    <PackageVersion>0.9.1</PackageVersion>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <PackageTags>episerver sso identity claims</PackageTags>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/bmcdavid/IdentityCollection/master/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/bmcdavid/IdentityCollection</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/bmcdavid/IdentityCollection/master/icon.png</PackageIconUrl>
+    <!--adds readme.md as readme.txt in package-->
+    <IncludeReadMeMarkdown>true</IncludeReadMeMarkdown>
+    <!--Provide intellisense for developers-->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!--useful to allow others to debug -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <IncludeSource>true</IncludeSource>
+    <!--set assembly info version from CI prop if possible-->
+    <BuildInfo Condition="'$(CIBuildNumber)' != ''"> Commit: $(RepositoryCommit) Branch: $(RepositoryBranch) Build: $(CIBuildNumber)</BuildInfo>
+    <InformationalVersion>$(PackageVersion) $(BuildInfo)</InformationalVersion>
+    <!--do not change unless you want to deal with assembly redirects-->
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="[11.1.0, 12.0)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <ProjectReference Include="..\bmcdavid.Episerver.ClaimsCriteria\bmcdavid.Episerver.ClaimsCriteria.csproj" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+  </ItemGroup>
+</Project>

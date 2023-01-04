@@ -1,9 +1,10 @@
 ﻿using EPiServer.Personalization.VisitorGroups;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
-using System.Web;
+
 
 namespace bmcdavid.Episerver.ClaimsCriteria
 {
@@ -22,7 +23,7 @@ namespace bmcdavid.Episerver.ClaimsCriteria
         /// <param name="principal"></param>
         /// <param name="httpContext"></param>
         /// <returns></returns>
-        public override bool IsMatch(IPrincipal principal, HttpContextBase httpContext)
+        public override bool IsMatch(IPrincipal principal, HttpContext httpContext)
         {
             if (!(principal is ClaimsPrincipal claimsPrincipal)) { return false; }
 

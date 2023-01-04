@@ -1,6 +1,7 @@
-﻿using System.Security.Claims;
+﻿using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
+
 
 namespace bmcdavid.Episerver.ClaimsCriteria
 {
@@ -15,6 +16,6 @@ namespace bmcdavid.Episerver.ClaimsCriteria
         /// <param name="identity"></param>
         /// <param name="httpContextBase"></param>
         /// <returns></returns>
-        Task AddVisitorGroupRolesAsClaimsAsync(ClaimsIdentity identity, HttpContextBase httpContextBase = null);
+        Task AddVisitorGroupRolesAsClaimsAsync(ClaimsIdentity identity, HttpContext httpContextBase = null);
     }
 }

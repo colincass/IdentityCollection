@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bmcdavid.Episerver.SynchronizedProviderExtensions", "src\bmcdavid.Episerver.SynchronizedProviderExtensions\bmcdavid.Episerver.SynchronizedProviderExtensions.csproj", "{F56D4B8A-AB7D-428F-AC88-A497099BD541}"
 EndProject

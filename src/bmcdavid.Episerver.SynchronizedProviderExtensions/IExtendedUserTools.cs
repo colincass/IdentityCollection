@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
+
 
 namespace bmcdavid.Episerver.SynchronizedProviderExtensions
 {

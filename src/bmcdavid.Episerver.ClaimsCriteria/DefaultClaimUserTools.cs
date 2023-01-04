@@ -1,8 +1,9 @@
 ﻿using EPiServer.Personalization.VisitorGroups;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
+
 
 namespace bmcdavid.Episerver.ClaimsCriteria
 {
@@ -29,12 +30,12 @@ namespace bmcdavid.Episerver.ClaimsCriteria
         /// Adds any Episerver visitor groups roles setup as security groups to claims identity
         /// </summary>
         /// <param name="identity"></param>
-        /// <param name="httpContextBase"></param>
+        /// <param name="httpContext"></param>
         /// <returns></returns>
-        public async Task AddVisitorGroupRolesAsClaimsAsync(ClaimsIdentity identity, HttpContextBase httpContextBase = null)
+        public async Task AddVisitorGroupRolesAsClaimsAsync(ClaimsIdentity identity, HttpContext httpContext = null)
         {
             if (identity == null || string.IsNullOrWhiteSpace(identity.Name)) { throw new ArgumentNullException(nameof(identity)); }
-            var httpContext = httpContextBase ?? new HttpContextWrapper(HttpContext.Current);
+            //var httpContext = httpContextBase ?? new HttpContextWrapper(httpContext);
             httpContext.User = httpContext.User ?? new ClaimsPrincipal(identity); // its null when user is authenticated...
             var visitorGroups = _visitorGroupRepository.List();
             foreach (var visitorGroup in visitorGroups)

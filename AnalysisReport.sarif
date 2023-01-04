@@ -6,14 +6,14 @@
       "tool": {
         "driver": {
           "name": "Dependency Analysis",
-          "semanticVersion": "0.4.346202",
+          "semanticVersion": "0.4.355802",
           "informationUri": "https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview",
           "rules": [
             {
-              "id": "UA106",
-              "name": "PackageToBeAdded",
+              "id": "UA101",
+              "name": "Dependency Analysis",
               "fullDescription": {
-                "text": "Packages that need to be added in order to upgrade the project to chosen TFM"
+                "text": "Dependency Analysis"
               },
               "helpUri": "https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview"
             }
@@ -22,9 +22,9 @@
       },
       "results": [
         {
-          "ruleId": "UA106",
+          "ruleId": "UA101",
           "message": {
-            "text": "Package Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers, Version=0.4.355802 needs to be added."
+            "text": "No package updates needed."
           },
           "locations": [
             {
@@ -44,7 +44,7 @@
       "tool": {
         "driver": {
           "name": "API Upgradability",
-          "semanticVersion": "0.4.346202",
+          "semanticVersion": "0.4.355802",
           "informationUri": "https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview"
         }
       },
@@ -55,7 +55,7 @@
       "tool": {
         "driver": {
           "name": "Component Analysis",
-          "semanticVersion": "0.4.346202",
+          "semanticVersion": "0.4.355802",
           "informationUri": "https://docs.microsoft.com/en-us/dotnet/core/porting/upgrade-assistant-overview"
         }
       },

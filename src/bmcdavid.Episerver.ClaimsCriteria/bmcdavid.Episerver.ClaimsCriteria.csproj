@@ -1,47 +1,40 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <Import Project="..\targets\AddReleaseNotes.targets" />
   <Import Project="..\targets\AddReadmeMarkdown.targets" />
   <Import Project="..\targets\CommonBuild.props" />
   <Import Project="..\targets\SignDll.props" />
-
   <PropertyGroup>
     <!--Target both full framework and netstandard to simplify installation, Epi 11 requires net461 or higher-->
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <PackageId>bmcdavid.Episerver.ClaimsCriteria</PackageId>
     <Authors>Brad McDavid</Authors>
     <Copyright>Copyright $(CurrentYear)</Copyright>
     <Description>Adds Episerver visitor group claim criteria</Description>
     <PackageVersion>0.9.1</PackageVersion>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
     <PackageTags>episerver identity claims visitor group</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLicenseUrl>https://raw.githubusercontent.com/bmcdavid/IdentityCollection/master/license.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/bmcdavid/IdentityCollection</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/bmcdavid/IdentityCollection/master/icon.png</PackageIconUrl>
-
     <!--adds readme.md as readme.txt in package-->
     <IncludeReadMeMarkdown>true</IncludeReadMeMarkdown>
-
     <!--Provide intellisense for developers-->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-
     <!--useful to allow others to debug -->
     <IncludeSymbols>true</IncludeSymbols>
     <IncludeSource>true</IncludeSource>
-
     <!--set assembly info version from CI prop if possible-->
     <BuildInfo Condition="'$(CIBuildNumber)' != ''"> Commit: $(RepositoryCommit) Branch: $(RepositoryBranch) Build: $(CIBuildNumber)</BuildInfo>
     <InformationalVersion>$(PackageVersion) $(BuildInfo)</InformationalVersion>
-
     <!--do not change unless you want to deal with assembly redirects-->
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
-
   <ItemGroup>
     <Content Include="lang\ClaimsVisitorGroupCriteria.xml" />
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="[11.1.0, 12.0)" />
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="12.9.0" />
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.355802" />
   </ItemGroup>
 </Project>

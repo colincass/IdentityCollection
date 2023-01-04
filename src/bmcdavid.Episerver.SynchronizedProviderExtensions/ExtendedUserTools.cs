@@ -1,10 +1,11 @@
 ﻿using bmcdavid.Episerver.ClaimsCriteria;
 using bmcdavid.Episerver.SynchronizedProviderExtensions.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
+
 
 namespace bmcdavid.Episerver.SynchronizedProviderExtensions
 {
@@ -33,7 +34,7 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         /// <param name="identity"></param>
         /// <param name="httpContextBase"></param>
         /// <returns></returns>
-        public async Task AddVisitorGroupRolesAsClaimsAsync(ClaimsIdentity identity, HttpContextBase httpContextBase = null) =>
+        public async Task AddVisitorGroupRolesAsClaimsAsync(ClaimsIdentity identity, HttpContext httpContextBase = null) =>
             await _claimUserTools.AddVisitorGroupRolesAsClaimsAsync(identity, httpContextBase);
 
         /// <summary>
