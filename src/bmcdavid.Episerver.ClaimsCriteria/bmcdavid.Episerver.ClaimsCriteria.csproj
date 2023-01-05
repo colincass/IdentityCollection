@@ -36,6 +36,5 @@
   <ItemGroup>
     <Content Include="lang\ClaimsVisitorGroupCriteria.xml" />
     <PackageReference Include="EPiServer.CMS.UI.Core" Version="12.9.0" />
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.355802" />
   </ItemGroup>
 </Project>
