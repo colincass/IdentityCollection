@@ -81,17 +81,28 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         /// <returns></returns>
         public async Task<PagedNotificationUserResult> FindAsync(string partOfUser, int pageIndex, int pageSize)
         {
-            using (var ctx = _episerverDbContextFactory.CreateContext())
+            return await Task.Run(() =>
             {
-                pageIndex = pageIndex < 1 ? 1 : pageIndex;
-                var count = ctx.TblSynchedUser.Count(u => u.UserName.Contains(partOfUser));
-                var results = await ctx.TblSynchedUser.AsAsyncEnumerable().Where(u => u.UserName.Contains(partOfUser))
-                    .Skip((pageIndex - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToListAsync();
+                using (var ctx = _episerverDbContextFactory.CreateContext())
+                {
+                    pageIndex = pageIndex < 1 ? 1 : pageIndex;
+                    var count = ctx.TblSynchedUser.Count(u => u.UserName.Contains(partOfUser));
 
-                return new PagedNotificationUserResult(results.Select(u => new NotificationUser(u.UserName)), count);
-            }
+                    var results = ctx.TblSynchedUser.AsQueryable().Where(u => u.UserName.Contains(partOfUser))
+                        .Skip((pageIndex - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToList();
+
+                    var userList = new List<NotificationUser>();
+
+                    foreach (SynchedUser item in results)
+                    {
+                        userList.Add(new NotificationUser(item.UserName));
+                    }
+
+                    return new PagedNotificationUserResult(userList, count);
+                }
+            });
         }
 
         /// <summary>

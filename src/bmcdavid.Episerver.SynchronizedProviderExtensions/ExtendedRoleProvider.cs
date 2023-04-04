@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace bmcdavid.Episerver.SynchronizedProviderExtensions
@@ -38,9 +39,22 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         /// </summary>
         public override string Name => nameof(ExtendedRoleProvider);
 
-        public override IAsyncEnumerable<IUIRole> GetAllRolesAsync()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public override async IAsyncEnumerable<IUIRole> GetAllRolesAsync()
         {
-            throw new NotImplementedException();
+            using (var ctx = _episerverDbContextFactory.CreateContext())
+            {
+                await foreach (var item in ctx.ExtendedRoles
+                    .AsAsyncEnumerable()
+                    .Select(x => new ExtendedUIRole { Name = x.RoleName, ProviderName = nameof(ExtendedRoleProvider) }))
+                {
+                    yield return item;
+                }
+
+            }
         }
 
         #region obsoletemethods
