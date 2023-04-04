@@ -1,8 +1,10 @@
 ﻿using EPiServer.Security;
 using EPiServer.Shell.Security;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace bmcdavid.Episerver.SynchronizedProviderExtensions
 {
@@ -33,6 +35,7 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         /// </summary>
         /// <param name="userName"></param>
         /// <returns></returns>
+        [Obsolete]
         public override IEnumerable<string> GetRolesForUser(string userName)
         {
             var defaultRoles = new HashSet<string>(_synchedProvider.GetRolesForUser(userName));
@@ -47,11 +50,30 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         }
 
         /// <summary>
+        /// Gets manual and synched roles for user asynchronously
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public async override Task<IEnumerable<string>> GetRolesForUserAsync(string userName)
+        {
+            var defaultRoles = new HashSet<string>(await _synchedProvider.GetRolesForUserAsync(userName));
+            var extendedRoles = _extendedRoleProvider.GetRolesForUserAsync(userName);
+
+            await foreach (var role in extendedRoles)
+            {
+                defaultRoles.Add(role);
+            }
+
+            return defaultRoles;
+        }
+
+        /// <summary>
         /// Called by UI to assign permissions
         /// </summary>
         /// <param name="partOfValue"></param>
         /// <param name="claimType"></param>
         /// <returns></returns>
+        [Obsolete]
         public override IEnumerable<SecurityEntity> Search(string partOfValue, string claimType)
         {
             switch (claimType)

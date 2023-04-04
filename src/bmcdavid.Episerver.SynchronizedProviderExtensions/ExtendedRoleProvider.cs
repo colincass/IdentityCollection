@@ -49,12 +49,13 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         /// </summary>
         /// <param name="username"></param>
         /// <param name="roleNames"></param>
+        [Obsolete]
         public override void AddUserToRoles(string username, IEnumerable<string> roleNames)
         {
             using (var ctx = _episerverDbContextFactory.CreateContext())
             {
                 var rolesList = roleNames.ToList();
-                var roles = ctx.ExtendedRoles.Where(x => rolesList.Contains(x.RoleName)).ToList();
+                var roles = ctx.ExtendedRoles.ToList().Where(x => rolesList.Contains(x.RoleName)).ToList();
                 var user = ctx.TblSynchedUser
                     .Include(p => p.ExtendedUserRoles)
                     .ThenInclude(p => p.ExtendedRole)
@@ -117,7 +118,7 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         {
             using (var ctx = _episerverDbContextFactory.CreateContext())
             {
-                return ctx.ExtendedRoles.Select(x => new ExtendedUIRole { Name = x.RoleName, ProviderName = nameof(ExtendedRoleProvider) }).ToList();
+                return ctx.ExtendedRoles.AsQueryable().Select(x => new ExtendedUIRole { Name = x.RoleName, ProviderName = nameof(ExtendedRoleProvider) }).ToList();
             }
         }
 
@@ -130,7 +131,7 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         {
             using (var ctx = _episerverDbContextFactory.CreateContext())
             {
-                return ctx.ExtendedRoles.Select(x => x.RoleName).ToList();
+                return ctx.ExtendedRoles.AsQueryable().Select(x => x.RoleName).ToList();
             }
         }
 

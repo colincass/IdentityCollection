@@ -38,6 +38,13 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
         /// </summary>
         public override string Name => nameof(ExtendedUserProvider);
 
+        /// <summary>
+        /// Asynchronous Count
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
         public override Task<int> CountAsync(Expression<Func<IUIUser, bool>> predicate = null, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
@@ -78,7 +85,7 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
             {
                 pageIndex = pageIndex < 1 ? 1 : pageIndex;
                 var count = ctx.TblSynchedUser.Count(u => u.UserName.Contains(partOfUser));
-                var results = await ctx.TblSynchedUser.Where(u => u.UserName.Contains(partOfUser))
+                var results = await ctx.TblSynchedUser.AsAsyncEnumerable().Where(u => u.UserName.Contains(partOfUser))
                     .Skip((pageIndex - 1) * pageSize)
                     .Take(pageSize)
                     .ToListAsync();
@@ -196,11 +203,10 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
 
                 if (totalRecords == 0) { return Enumerable.Empty<UIUser>(); }
 
-                var matches = ctx.TblSynchedUser
+                var matches = ctx.TblSynchedUser.AsQueryable()
                     .Where(u => emailSearch ? u.Email.Contains(toMatch) : u.UserName.Contains(toMatch))
                     .Skip((pageIndex - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToList();
+                    .Take(pageSize);
 
                 return matches.Select(ConvertToUIUser);
             }

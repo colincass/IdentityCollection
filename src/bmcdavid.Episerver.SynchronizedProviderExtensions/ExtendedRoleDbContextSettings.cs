@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Configuration;
 
 namespace bmcdavid.Episerver.SynchronizedProviderExtensions
@@ -9,6 +10,16 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
     public class ExtendedRoleDbContextSettings : IDbContextSettings
     {
         private DbContextOptions _options;
+        private IConfiguration _configuration;
+
+        /// <summary>
+        /// Constructor with injected site configuration
+        /// </summary>
+        /// <param name="configuration"></param>
+        public ExtendedRoleDbContextSettings(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
 
         /// <summary>EpiserverDB connection options</summary>
         public DbContextOptions ContextOptions => BuildOptions();
@@ -22,7 +33,7 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions
                 return _options;
 
             DbContextOptionsBuilder<ExtendedRoleDbContext> optionsBuilder = new DbContextOptionsBuilder<ExtendedRoleDbContext>();
-            optionsBuilder.UseSqlServer(ConfigurationManager.ConnectionStrings["EPiServerDB"].ConnectionString);
+            optionsBuilder.UseSqlServer(_configuration.GetConnectionString("EPiServerDB"));
             _options = optionsBuilder.Options;
             return _options;
         }

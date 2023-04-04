@@ -1,10 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\targets\AddReleaseNotes.targets" />
-  <Import Project="..\targets\AddReadmeMarkdown.targets" />
-  <Import Project="..\targets\CommonBuild.props" />
-  <Import Project="..\targets\SignDll.props" />
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <PackageId>bmcdavid.Episerver.SynchronizedProviderExtensions</PackageId>
     <Authors>Brad McDavid</Authors>
@@ -32,11 +28,12 @@
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <SignAssembly>False</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EPiServer.CMS.UI.Core" Version="12.9.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.3" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.3">
+    <PackageReference Include="EPiServer.CMS.UI.Core" Version="12.17.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.32" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.32">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>

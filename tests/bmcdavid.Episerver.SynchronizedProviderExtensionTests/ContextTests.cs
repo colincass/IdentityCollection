@@ -23,7 +23,7 @@ namespace bmcdavid.Episerver.SynchronizedProviderExtensions.Tests
 
             using (var ctx = TestSetup.DbFactory.CreateContext())
             {
-                Assert.IsTrue(ctx.ExtendedRoles.CountAsync().Result > 0);
+                Assert.IsTrue(ctx.ExtendedRoles.AsQueryable().Count() > 0);
                 ctx.ExtendedRoles.Remove(role);
                 ctx.SaveChanges();
             }
